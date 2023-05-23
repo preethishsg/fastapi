@@ -20,7 +20,10 @@ with open('people.json', 'r') as f:
 @app.get('/person/{p_id}', status_code=200)
 def get_person(p_id: int):
     person = [p for p in people if p['id'] == p_id]
-    return person[0] if len(person) > 0 else {}
+    if len(person) > 0 :
+        return person[0]
+    else :
+        return HTTPException (status_code=404, detail=f"Person with id {p_id} does not exist")
 
 @app.get('/search', status_code=200) 
 def search_person(age: Optional [int] = Query(None, title="Age", description="The age to filter for"),
