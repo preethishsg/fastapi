@@ -89,6 +89,6 @@ def delete_person(p_id: int):
         raise HTTPException(status_code=404, detail=f"There is no person with id {p_id}")
 
 
-# starting the app
-# if __name__ == "__main__":
-#     app.run(port=6000, debug=True)  
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000) 
